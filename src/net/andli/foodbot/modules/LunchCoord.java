@@ -42,7 +42,7 @@ public class LunchCoord implements ActionListener {
 	}
 
 	private String printSuggestion(Suggestion s) {
-		return suggestions.indexOf(s) + ") " + s.toString();
+		return suggestions.indexOf(s) + 1 + ") " + s.toString();
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class LunchCoord implements ActionListener {
 
 	public void addDeparture(String channel, FoodUser user, String[] args) {
 		try {
-			int suggNo = Integer.parseInt(args[0]);
+			int suggNo = Integer.parseInt(args[0]) - 1;
 			verifySuggestion(suggNo);
 			// Parse suggestion
 			Suggestion s = suggestions.get(suggNo);
@@ -167,7 +167,7 @@ public class LunchCoord implements ActionListener {
 
 	public void removeDepartures(String channel, FoodUser user, String[] args) {
 		try {
-			int suggNo = Integer.parseInt(args[0]);
+			int suggNo = Integer.parseInt(args[0]) - 1;
 			verifySuggestion(suggNo);
 
 			Suggestion s = suggestions.get(suggNo);
@@ -181,7 +181,8 @@ public class LunchCoord implements ActionListener {
 			}
 			if (remDeps.size() > 0) {
 				deps.removeAll(remDeps);
-				broadcaster.printToChannel(channel, "Ok, " + user.getNick() + ". Your departs removed for suggestion " + suggNo + ".");
+				int suggNoDisp = suggNo + 1;
+				broadcaster.printToChannel(channel, "Ok, " + user.getNick() + ". Your departs removed for suggestion " + suggNoDisp + ".");
 			}
 			else {
 				broadcaster.printToChannel(channel, "No departs for that suggestion and user.");
@@ -209,6 +210,7 @@ public class LunchCoord implements ActionListener {
 	}
 
 	public void vote(String channel, FoodUser user, int suggNo) {
+		suggNo--;
 		try {
 			nolunchers.remove(user);
 			user.setNote(null);
@@ -217,8 +219,9 @@ public class LunchCoord implements ActionListener {
 			}
 			else {
 				suggestions.get(suggNo).addVoter(user);
+				int suggNoDisp = suggNo + 1;
 				broadcaster.printToChannel(channel, user.getNick() + " voted for " + 
-						suggestions.get(suggNo).toString());			
+						suggNoDisp + ") " + suggestions.get(suggNo).toString());			
 			}
 		} catch (Exception e) {
 			broadcaster.errorToChannel(channel, e.getMessage());
@@ -232,6 +235,7 @@ public class LunchCoord implements ActionListener {
 	}
 
 	public void unvote(String channel, FoodUser user, int suggNo) {
+		suggNo--;
 		try {
 			verifySuggestion(suggNo);
 			Suggestion s = suggestions.get(suggNo);
@@ -250,14 +254,14 @@ public class LunchCoord implements ActionListener {
 
 	public void prefer(String channel, FoodUser user, int suggNo) {
 		try {
+			suggNo = suggNo - 1;
 			// If user has voted for suggestion
 			boolean hasVoted = false;
-			for (Suggestion s : suggestions) {
-				if (s.getVoters().contains(user)) {
-					hasVoted = true;
-					if (s.getPerferrers().contains(user)) {
-						s.removePreferrer(user);					
-					}
+			Suggestion s = suggestions.get(suggNo);
+			if (s.getVoters().contains(user)) {
+				hasVoted = true;
+				if (s.getPerferrers().contains(user)) {
+					s.removePreferrer(user);					
 				}
 			}
 
@@ -265,12 +269,13 @@ public class LunchCoord implements ActionListener {
 				// Set that user prefers suggestion
 				suggestions.get(suggNo).addPreferrer(user);
 				// Say <name> prefers <sugg no>
-				broadcaster.printToChannel(channel, user.getNick() + " prefers " + suggNo + ").");
+				int suggNoDisp = suggNo + 1;
+				broadcaster.printToChannel(channel, user.getNick() + " prefers " + suggNoDisp + ").");
 			}
 			else {
 				// Say no votes were cast
-				vote(channel, user, suggNo);
-				prefer(channel, user, suggNo);
+				vote(channel, user, suggNo + 1);
+				prefer(channel, user, suggNo + 1);
 				//broadcaster.errorToChannel(channel, "You have to vote for it to prefer it.");	
 			}
 		} catch (Exception e) {
