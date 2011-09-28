@@ -77,7 +77,7 @@ public class Main {
 		}
 		else {
 			System.out.println("Must start with <botname> <channel> <encoding>. " +
-					"Example: sudo screen -S fb java -jar foodbot3.jar foodbot \"#mjardevi\" \"utf-8\"");
+					"Example: sudo screen -S fb java -jar foodbot.jar foodbot \"#mjardevi\" \"utf-8\"");
 		}
 
 		

@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <java version="1.6.0_21" class="java.beans.XMLDecoder"> 
  <object class="java.util.ArrayList"> 
-  <void method="add"> 
-   <object class="andli.common.Bugreport"> 
-    <void property="bugreport"> 
-     <string>test</string> 
-    </void> 
-    <void property="creator"> 
-     <string>andliHome</string> 
-    </void> 
-    <void property="dateFiled"> 
-     <long>1286739787062</long> 
-    </void> 
-   </object> 
-  </void> 
-  <void method="add"> 
-   <object class="andli.common.Bugreport"> 
-    <void property="bugreport"> 
-     <string>test</string> 
-    </void> 
-    <void property="creator"> 
-     <string>andliHome</string> 
-    </void> 
-    <void property="dateFiled"> 
-     <long>1286739895130</long> 
-    </void> 
-   </object> 
-  </void> 
+  
  </object> 
 </java> 

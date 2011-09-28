@@ -28,7 +28,7 @@ extends PircBot implements ActionListener, IChannelHandler
 {
 	private static final String FOODUSERS_FILENAME = "foodusers.xml";
 	private static final String BUGREPORTS_FILENAME = "bugreports.xml";
-	private static final String VERSION = "3.0.11";
+	private static final String VERSION = "3.0.14";
 	private Calendar lastReset;
 	private ArrayList<FoodUser> userList;
 	private LunchCoord lunchCoord;
