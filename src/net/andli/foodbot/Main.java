@@ -35,7 +35,7 @@ public class Main {
 			
 			bot = new FoodBot(botName, lunchChannel);
 			bot.setAutoNickChange(true);
-			bot.setMessageDelay(1100);
+			bot.setMessageDelay(900);
 			
 			// Enable debugging output.
 			bot.setVerbose(false);

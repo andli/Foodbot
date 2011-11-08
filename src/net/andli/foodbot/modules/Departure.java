@@ -21,4 +21,15 @@ public class Departure {
 	public FoodUser getCreator() {
 		return creator;
 	}
+	
+	@Override
+	public boolean equals(Object compSuggestion) {
+		boolean retVal = false;
+		Departure d = (Departure)compSuggestion;
+		if (time.equals(d.time) && 
+				place.equals(d.place)) {
+			retVal = true;
+		}
+		return retVal;
+	}
 }

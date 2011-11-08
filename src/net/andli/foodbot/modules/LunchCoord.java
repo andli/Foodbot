@@ -29,7 +29,7 @@ public class LunchCoord implements ActionListener {
 		if (nolunchers.size() > 0) {
 			broadcaster.printToChannel(lunchChannel, "Busy today: " + printNameList(nolunchers, null));
 		}
-		if (suggestions.size() > 0) {
+		if (getTotalVoters() > 0) {
 			for (Suggestion s : suggestions) {
 				if (s.getVoters().size() > 0) {
 					broadcaster.printToChannel(lunchChannel, printSuggestion(s));
@@ -39,6 +39,14 @@ public class LunchCoord implements ActionListener {
 		else {
 			broadcaster.printToChannel(lunchChannel, "No suggestions yet. I !suggest you make one...");
 		}
+	}
+	
+	private int getTotalVoters() {
+		int result = 0;
+		for (Suggestion s : suggestions) {
+			result = result + s.getVoters().size();
+		}
+		return result;
 	}
 
 	private String printSuggestion(Suggestion s) {
@@ -149,7 +157,7 @@ public class LunchCoord implements ActionListener {
 						broadcaster.printToChannel(channel, printSuggestion(s));
 					}
 					else {
-						broadcaster.errorToChannel(channel, "No duplicates.");
+						broadcaster.errorToChannel(channel, "No duplicates allowed.");
 					}
 				}
 				else {

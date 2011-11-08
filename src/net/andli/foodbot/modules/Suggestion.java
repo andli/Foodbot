@@ -88,7 +88,7 @@ public class Suggestion {
 	
 	@Override
 	public String toString() {
-		String retString = String.format("%s @ %s - %s röster; %s",
+		String retString = String.format("%s @ %s - %s votes; %s",
 				this.getLunchTime().toString(),
 				this.getFoodPlace(),
 				this.getVoters().size(),
