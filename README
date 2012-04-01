@@ -1,1 +1,14 @@
-Nothing to see here.
+Foodbot commands:
+!suggest <time> <place> -- Suggest a new lunch
+!vote <index> -- Vote for a suggestion
+!unvote <index> -- Remove your vote for a suggestion
+!prefer <index> -- Prefer one of the suggestions you have voted for
+!unprefer <index> -- Remove prefer
+!depart <index> <time> <place> -- Enter a departure time and place for a suggestion
+!cleardeparts <index> -- Clear departures you have entered for a suggestion
+!menu <restaurant id> -- Print out today's menu for a restaurant
+!menulist -- List all the available restaurants with menus
+!help -- Show link to help text
+!lunch -- List all suggestions
+!busy <optional message> -- Note that you cannot attend lunch today
+!nolunch <optional message>

@@ -28,14 +28,14 @@ public class Main {
 		String lunchChannel;
 		String encodingString;
 
-		if (args.length == 3) {
+		if (args.length == 2) {
 			botName = args[0];
 			lunchChannel = args[1];
-			encodingString = args[2];
+			encodingString = "utf-8"; //args[2];
 			
 			bot = new FoodBot(botName, lunchChannel);
 			bot.setAutoNickChange(true);
-			bot.setMessageDelay(900);
+			bot.setMessageDelay(800);
 			
 			// Enable debugging output.
 			bot.setVerbose(false);
@@ -76,8 +76,8 @@ public class Main {
 
 		}
 		else {
-			System.out.println("Must start with <botname> <channel> <encoding>. " +
-					"Example: sudo screen -S fb java -jar foodbot.jar foodbot \"#mjardevi\" \"utf-8\"");
+			System.out.println("Must start with <botname> <channel>. " +
+					"Example: sudo screen -S fb java -jar foodbot.jar foodbot \"#mjardevi\"");
 		}
 
 		

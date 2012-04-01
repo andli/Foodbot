@@ -28,7 +28,7 @@ extends PircBot implements ActionListener, IChannelHandler
 {
 	private static final String FOODUSERS_FILENAME = "foodusers.xml";
 	private static final String BUGREPORTS_FILENAME = "bugreports.xml";
-	private static final String VERSION = "3.0.14";
+	private static final String VERSION = "3.0.15";
 	private Calendar lastReset;
 	private ArrayList<FoodUser> userList;
 	private LunchCoord lunchCoord;
@@ -202,7 +202,8 @@ extends PircBot implements ActionListener, IChannelHandler
 				break;
 			case BUG:
 				if (!user.isSilenced()) {
-					reportBug(channel, sender, arguments);
+					sendMessage(channel, "Please report bugs at https://github.com/andli/Foodbot/issues/new");
+					//reportBug(channel, sender, arguments);
 				}
 				break;
 			case HELP:
@@ -383,7 +384,7 @@ extends PircBot implements ActionListener, IChannelHandler
 
 	private void presentHelpText(String channel) {
 		sendMessage(channel, "My commands and bugs (v " + FoodBot.VERSION + ") can be found at:");
-		sendMessage(channel, "http://andli.net/foodbot");
+		sendMessage(channel, "https://github.com/andli/Foodbot#readme");
 	}
 
 	/**
@@ -392,7 +393,7 @@ extends PircBot implements ActionListener, IChannelHandler
 	 * @param sender
 	 * @param message
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	private void reportBug(String channel, String sender, String message)
 	{
 		Bugreport newBug = new Bugreport();
